@@ -1,21 +1,33 @@
 // each space or tile on the board will have its logic stored here
 import Paper from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
+import {useState} from 'react';
 
 const BoardSpace = (props) => {
+  const [state, setState] = useState({hidden: true});
   const { index } = props;
   let { count } = props;
 
-  const empty = () => (
-    <div id={index} />
-  )
+  const handleClick = () => {
+    if (state.hidden) {
+      setState({hidden: false});
+      // call function to remove item from 
+      // collection of "safe" tiles
+    }
+  }
 
   const getNeighborCount = () => {
-    if (count === undefined || count === 0) {
+    if (state.hidden){
       return "";
-    } else {
-      return count;
-    }
+    }else{
+
+      if (count === undefined || count === 0) {
+        return "";
+      } else {
+        return count;
+      }
+
+    } 
   }
 
   const full = () => (
@@ -47,13 +59,12 @@ const BoardSpace = (props) => {
   const getSpace = () => {
     if(props.valid) {
       return full();
-    } else {
-      return empty();
-    }
+    } 
   }
 
   return (
     <Grid
+      onClick = {handleClick}
       container
       id={props.index}
       direction="row"
