@@ -3,14 +3,8 @@ import Grid from '@mui/material/Grid';
 import BoardSpace from './boardSpace.js';
 
 const Board = (props) => {
+  const { count } = props;
   // setSpaces = props.setSpaces
-  const count = props.count;
-  const validSpaces = [
-    0,1,2,3,4,5,
-    6,11,12,17,18,
-    23,24,25,26,27,
-    28,29,
-  ];
 
   const getSpaces = () => {
     return(
@@ -20,12 +14,14 @@ const Board = (props) => {
         justifyContent="center"
         alignItems="center"
       >
-        {new Array(count).fill(0).map((space, index) => {
+        {new Array(count * 6).fill(0).map((space, index) => {
           return(
             <BoardSpace
               key={index}
               index={index}
-              valid={validSpaces.includes(index)}
+              // valid={validSpaces.includes(index)}
+              valid = {true}
+              count = {1}
             />
           )
         })}
@@ -37,7 +33,6 @@ const Board = (props) => {
     <div
       style={{
         width: "900px",
-        height: "750px",
         backgroundColor: "lightgray"
       }}
     >
