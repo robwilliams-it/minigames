@@ -4,6 +4,8 @@ import Grid from '@mui/material/Grid';
 import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { update } from '../../app/boardStore.js';
+import Flag from '@mui/icons-material/EmojiFlags';
+import Bomb from '@mui/icons-material/AllOut';
 
 const BoardSpace = (props) => {
   const board = useSelector((state)=> state.board.value )
@@ -32,13 +34,16 @@ const BoardSpace = (props) => {
     }
   }
 
-  const getNeighborCount = () => {
+  const getSomethingIDKavalue = () => {
     if (state.hidden){
       return "";
-    }else{
-
-      if (value === undefined || value === 0) {
+    } else {
+      if (value === undefined) {
         return "";
+      } else if (value === 0) {
+        return <Flag/>
+      } else if (value === 'b'){
+        return <Bomb />
       } else {
         return value;
       }
@@ -66,7 +71,7 @@ const BoardSpace = (props) => {
         }}
       >
         <Grid item>
-          {getNeighborCount()}
+          {getSomethingIDKavalue()}
         </Grid>
       </Grid>
     </Paper>

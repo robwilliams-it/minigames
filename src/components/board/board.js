@@ -98,8 +98,6 @@ const Board = (props) => {
       return board.ids[yAxis][xAxis];
     }
 
-    console.log(board);
-
     return(
       <Grid
         container
@@ -115,9 +113,7 @@ const Board = (props) => {
             <BoardSpace
               key={index}
               index={index}
-              // valid={validSpaces.includes(index)}
               valid = {true}
-              // value = {board[x][y]}
               value={value}
               y = {y}
               x = {x}
