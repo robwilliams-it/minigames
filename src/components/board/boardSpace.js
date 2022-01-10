@@ -2,15 +2,31 @@
 import Paper from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { update } from '../../app/boardStore.js';
 
 const BoardSpace = (props) => {
+  const board = useSelector((state)=> state.board.value )
+  const dispatch = useDispatch();
   const [state, setState] = useState({hidden: true});
   const { index } = props;
-  let { count } = props;
-
+  let { value } = props;
+  
   const handleClick = () => {
     if (state.hidden) {
       setState({hidden: false});
+      
+      // get board state
+      // find element in the board state
+      // remove element from the board state
+      const boardIds = [...board.ids];
+      var i = boardIds.indexOf(index);
+      if (i !== -1) {
+        boardIds.splice(i, 1);
+      } else {
+        // console.log(index);
+      }
+      dispatch(update({ids: boardIds}));
       // call function to remove item from 
       // collection of "safe" tiles
     }
@@ -21,10 +37,10 @@ const BoardSpace = (props) => {
       return "";
     }else{
 
-      if (count === undefined || count === 0) {
+      if (value === undefined || value === 0) {
         return "";
       } else {
-        return count;
+        return value;
       }
 
     } 

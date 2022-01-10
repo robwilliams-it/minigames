@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Counter />
+        {/* <Counter /> */}
         <br/>
         <Board count={6}/>
       </header>
